@@ -19,7 +19,7 @@ $data = json_decode($payload, true);
 
 // Só faz deploy se for branch main
 if ($data['ref'] === 'refs/heads/main') {
-    $output = shell_exec('cd /opt/bitnami/apache/htdocs/producao && git pull origin main 2>&1');
+    $output = shell_exec('cd /opt/bitnami/apache/htdocs && git pull origin main 2>&1');
     file_put_contents('/opt/bitnami/apache/logs/deploy.log', date('Y-m-d H:i:s') . " - Deploy executado\n" . $output . "\n", FILE_APPEND);
     echo "Deploy executado!";
 } else {

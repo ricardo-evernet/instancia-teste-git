@@ -21,6 +21,7 @@ $data = json_decode($payload, true);
 if ($data['ref'] === 'refs/heads/main') {
     $output = shell_exec('sudo -u bitnami git -C /opt/bitnami/apache/htdocs pull 2>&1');
     // file_put_contents('/opt/bitnami/apache/logs/deploy.log', date('Y-m-d H:i:s') . " - Deploy executado\n" . $output . "\n", FILE_APPEND);
+    // shell_exec('sudo -u bitnami sh -c "echo \"' . date('Y-m-d H:i:s') . " - Deploy executado\n" . addslashes($output) . "\n\" >> /opt/bitnami/apache/logs/deploy.log"');
     echo "Deploy executado!";
 } else {
     echo "Push não é da main, ignorado.";
